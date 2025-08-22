@@ -1,0 +1,18 @@
+{
+  "name": "mi-proyecto",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "clean": "rimraf dist",
+    "file": "ts-node",
+    "watch:file": "nodemon --exec ts-node"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "nodemon": "^3.0.1",
+    "rimraf": "^5.0.0",
+    "typescript": "^5.5.0"
+  }
+}
