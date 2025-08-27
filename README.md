@@ -23,3 +23,22 @@ cd mds_2
 ```bash
 npm install
 ```
+
+## 🎯 Comandos Disponibles
+
+### Ejecutar Ejemplos Individuales
+
+```bash
+# Ejecutar el ejemplo de cada patrón (una vez)
+npm run run:singleton
+npm run run:factory
+npm run run:adapter
+npm run run:strategy
+
+# Ejecutar con auto-recarga (recomendado para desarrollo)
+npm run watch:singleton
+npm run watch:factory
+npm run watch:adapter
+npm run watch:strategy
+""
+```
