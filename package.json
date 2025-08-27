@@ -12,8 +12,8 @@
     "watch:factory": "nodemon --exec ts-node src/Creacionales/factory/ejemplo1/factory.ts",
     "run:adapter": "ts-node src/Estructurales/Adapter/main.ts",
     "watch:adapter": "nodemon --exec ts-node src/Estructurales/Adapter/main.ts",
-    "run:strategy": "ts-node src/Comportamiento/main.ts",
-    "watch:strategy": "nodemon --exec ts-node src/Comportamiento/main.ts"
+    "run:strategy": "ts-node src/Comportamiento/Strategy/operaciones/main.ts",
+    "watch:strategy": "nodemon --exec ts-node src/Comportamiento/Strategy/operaciones/main.ts"
   },
   "devDependencies": {
     "ts-node": "^10.9.2",

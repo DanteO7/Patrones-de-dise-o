@@ -1,33 +1,37 @@
-interface Strategy {
+interface OperationStrategy {
   operar(a: number, b: number): number;
 }
 
-class Sumar implements Strategy {
+interface OperationContext {
+  executeStrategy(a: number, b: number): number;
+}
+
+class Sumar implements OperationStrategy {
   public operar(a: number, b: number): number {
     return a + b;
   }
 }
 
-class Restar implements Strategy {
+class Restar implements OperationStrategy {
   public operar(a: number, b: number): number {
     return a - b;
   }
 }
 
-class Multiplicar implements Strategy {
+class Multiplicar implements OperationStrategy {
   public operar(a: number, b: number): number {
     return a * b;
   }
 }
 
-class Contexto {
-  private strategy: Strategy;
+class Operacion implements OperationContext {
+  private strategy: OperationStrategy;
 
-  constructor(strategy: Strategy) {
+  constructor(strategy: OperationStrategy) {
     this.strategy = strategy;
   }
 
-  public setStrategy(strategy: Strategy): void {
+  public setStrategy(strategy: OperationStrategy): void {
     this.strategy = strategy;
   }
 
@@ -45,12 +49,12 @@ enum Strategies {
   Multiplicar = "Multiplicar",
 }
 
-const mapStrategies: Map<Strategies, () => Contexto> = new Map([
-  [Strategies.Sumar, () => new Contexto(new Sumar())],
-  [Strategies.Restar, () => new Contexto(new Restar())],
-  [Strategies.Multiplicar, () => new Contexto(new Multiplicar())],
+const mapOperations: Map<Strategies, () => Operacion> = new Map([
+  [Strategies.Sumar, () => new Operacion(new Sumar())],
+  [Strategies.Restar, () => new Operacion(new Restar())],
+  [Strategies.Multiplicar, () => new Operacion(new Multiplicar())],
 ]);
 
-const operacion = mapStrategies.get(Strategies.Multiplicar);
+const operacion = mapOperations.get(Strategies.Sumar);
 
 if (operacion) console.log(operacion().executeStrategy(number1, number2));

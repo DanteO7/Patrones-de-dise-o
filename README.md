@@ -40,5 +40,4 @@ npm run watch:singleton
 npm run watch:factory
 npm run watch:adapter
 npm run watch:strategy
-""
 ```
