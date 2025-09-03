@@ -1,33 +1,13 @@
-import { Point } from "../current/shared/types";
-import {
-  BehaviorContext,
-  BehaviorStrategy,
-} from "./strategies/behavior-strategy";
+import { Point } from "./shared/types";
+import { BehaviorStrategy, EnemyLike } from "./strategies/behavior-strategy";
 
-export class Enemy implements BehaviorContext {
-  private position: Point = { x: 80, y: 60 };
+export class Enemy implements EnemyLike {
+  position: Point = { x: 80, y: 60 };
+  speed: number = 30;
   private strategy: BehaviorStrategy;
 
-  constructor(
-    strategy: BehaviorStrategy,
-    private readonly getPlayerPos: () => Point
-  ) {
+  constructor(strategy: BehaviorStrategy) {
     this.strategy = strategy;
-  }
-  getPlayerPosition(): Point {
-    return this.getPlayerPos();
-  }
-  getPatrolWaypoints(): Point[] {
-    return [
-      { x: 20, y: 20 },
-      { x: 120, y: 20 },
-      { x: 120, y: 90 },
-      { x: 20, y: 90 },
-    ];
-  }
-
-  getPosition(): Point {
-    return this.position;
   }
 
   setStrategy(str: BehaviorStrategy) {
@@ -35,6 +15,6 @@ export class Enemy implements BehaviorContext {
   }
 
   updateAI() {
-    this.strategy.updateAI(this);
+    this.strategy.updateAI(this, 0.3);
   }
 }

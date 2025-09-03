@@ -1,25 +1,33 @@
 import {
   addVectors,
   normalizeVector,
+  Point,
   scaleVector,
   subtractVectors,
   vectorLength,
-} from "../../current/shared/types";
-import { BehaviorContext, BehaviorStrategy } from "./behavior-strategy";
+} from "../shared/types";
+import { BehaviorStrategy, EnemyLike } from "./behavior-strategy";
 
 export class Patrol implements BehaviorStrategy {
-  updateAI(context: BehaviorContext): void {
-    let currentWaypointIndex = 0;
-    const target = context.getPatrolWaypoints()[currentWaypointIndex];
-    const toTarget = subtractVectors(target, context.getPosition());
+  private readonly patrolWaypoints: Point[] = [
+    { x: 20, y: 20 },
+    { x: 120, y: 20 },
+    { x: 120, y: 90 },
+    { x: 20, y: 90 },
+  ];
+  private currentWaypointIndex = 0;
+
+  updateAI(enemy: EnemyLike, delta: number): Point {
+    const target = this.patrolWaypoints[this.currentWaypointIndex];
+    const toTarget = subtractVectors(target, enemy.position);
     const direction = normalizeVector(toTarget);
-    const step = scaleVector(direction, 30 * context.dt);
-    const candidate = addVectors(context.getPosition(), step);
+    const step = scaleVector(direction, enemy.speed * delta);
+    const candidate = addVectors(enemy.position, step);
 
     // ¿Llegamos al waypoint?
     if (vectorLength(toTarget) < 1.5) {
-      currentWaypointIndex =
-        (currentWaypointIndex + 1) % context.getPatrolWaypoints().length;
+      this.currentWaypointIndex =
+        (this.currentWaypointIndex + 1) % this.patrolWaypoints.length;
     }
 
     return candidate;

@@ -1,20 +1,20 @@
 import {
   addVectors,
   normalizeVector,
+  Point,
   scaleVector,
   subtractVectors,
-} from "../../current/shared/types";
-import { BehaviorContext, BehaviorStrategy } from "./behavior-strategy";
+} from "../shared/types";
+import { BehaviorStrategy, EnemyLike } from "./behavior-strategy";
 
 export class Chase implements BehaviorStrategy {
-  updateAI(context: BehaviorContext): void {
-    const playerPosition = context.getPlayerPosition();
-    const toPlayer = subtractVectors(playerPosition, context.getPosition());
+  updateAI(enemy: EnemyLike, delta: number): Point {
+    const toPlayer = subtractVectors(enemy.position, enemy.position);
     const direction = normalizeVector(toPlayer);
     // Un poco más rápido en “chase”
     return addVectors(
-      context.getPosition(),
-      scaleVector(direction, 30 * 1.25 * context.dt)
+      enemy.position,
+      scaleVector(direction, enemy.speed * 1.25 * delta)
     );
   }
 }

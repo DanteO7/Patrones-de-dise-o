@@ -1,7 +1,8 @@
-import { BehaviorContext, BehaviorStrategy } from "./behavior-strategy";
+import { Point } from "../shared/types";
+import { BehaviorStrategy, EnemyLike } from "./behavior-strategy";
 
 export class Idle implements BehaviorStrategy {
-  updateAI(context: BehaviorContext): void {
-    context.getPosition();
+  updateAI(enemy: EnemyLike): Point {
+    return enemy.position;
   }
 }

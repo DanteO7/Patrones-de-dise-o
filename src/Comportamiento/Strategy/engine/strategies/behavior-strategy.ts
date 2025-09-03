@@ -1,11 +1,10 @@
-import { Point } from "../../current/shared/types";
+import { Point } from "../shared/types";
 
-export interface BehaviorContext {
-  getPosition(): Point;
-  getPatrolWaypoints(): Point[];
-  getPlayerPosition(): Point;
-}
+export type EnemyLike = {
+  position: Point;
+  speed: number;
+};
 
 export interface BehaviorStrategy {
-  updateAI(context: BehaviorContext): void;
+  updateAI(enemy: EnemyLike, delta: number): Point;
 }
