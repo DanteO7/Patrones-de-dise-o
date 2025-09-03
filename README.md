@@ -15,7 +15,7 @@ Este repositorio contiene ejemplos y ejercicios realizados de **Patrones de Dise
 
 ```bash
 git clone https://github.com/DanteO7/Patrones-de-dise-o
-cd mds_2
+cd Patrones-de-dise-o
 ```
 
 ### 2. Instalar dependencias
@@ -34,10 +34,12 @@ npm run run:singleton
 npm run run:factory
 npm run run:adapter
 npm run run:strategy
+npm run run:observer
 
 # Ejecutar con auto-recarga (recomendado para desarrollo)
 npm run watch:singleton
 npm run watch:factory
 npm run watch:adapter
 npm run watch:strategy
+npm run watch:observer
 ```
